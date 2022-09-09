@@ -2,6 +2,9 @@ lockfileVersion: 5.4
 
 specifiers:
   '@actions/core': ^1.9.1
+  '@actions/exec': ^1.1.1
+  '@actions/http-client': ^2.0.1
+  '@actions/tool-cache': ^2.0.1
   '@types/node': ^18.7.16
   '@typescript-eslint/parser': ^5.36.2
   '@vercel/ncc': ^0.34.0
@@ -11,10 +14,11 @@ specifiers:
   typescript: ^4.8.3
   vitest: ^0.23.1
 
-dependencies:
-  '@actions/core': 1.9.1
-
 devDependencies:
+  '@actions/core': 1.9.1
+  '@actions/exec': 1.1.1
+  '@actions/http-client': 2.0.1
+  '@actions/tool-cache': 2.0.1
   '@types/node': 18.7.16
   '@typescript-eslint/parser': 5.36.2_itqs5654cmlnjraw6gjzqacppi
   '@vercel/ncc': 0.34.0
@@ -31,13 +35,34 @@ packages:
     dependencies:
       '@actions/http-client': 2.0.1
       uuid: 8.3.2
-    dev: false
+    dev: true
+
+  /@actions/exec/1.1.1:
+    resolution: {integrity: sha512-+sCcHHbVdk93a0XT19ECtO/gIXoxvdsgQLzb2fE2/5sIZmWQuluYyjPQtrtTHdU1YzTZ7bAPN4sITq2xi1679w==}
+    dependencies:
+      '@actions/io': 1.1.2
+    dev: true
 
   /@actions/http-client/2.0.1:
     resolution: {integrity: sha512-PIXiMVtz6VvyaRsGY268qvj57hXQEpsYogYOu2nrQhlf+XCGmZstmuZBbAybUl1nQGnvS1k1eEsQ69ZoD7xlSw==}
     dependencies:
       tunnel: 0.0.6
-    dev: false
+    dev: true
+
+  /@actions/io/1.1.2:
+    resolution: {integrity: sha512-d+RwPlMp+2qmBfeLYPLXuSRykDIFEwdTA0MMxzS9kh4kvP1ftrc/9fzy6pX6qAjthdXruHQ6/6kjT/DNo5ALuw==}
+    dev: true
+
+  /@actions/tool-cache/2.0.1:
+    resolution: {integrity: sha512-iPU+mNwrbA8jodY8eyo/0S/QqCKDajiR8OxWTnSk/SnYg0sj8Hp4QcUEVC1YFpHWXtrfbQrE13Jz4k4HXJQKcA==}
+    dependencies:
+      '@actions/core': 1.9.1
+      '@actions/exec': 1.1.1
+      '@actions/http-client': 2.0.1
+      '@actions/io': 1.1.2
+      semver: 6.3.0
+      uuid: 3.4.0
+    dev: true
 
   /@babel/runtime-corejs3/7.19.0:
     resolution: {integrity: sha512-JyXXoCu1N8GLuKc2ii8y5RGma5FMpFeO2nAQIe0Yzrbq+rQnN+sFj47auLblR5ka6aHNGPDgv8G/iI2Grb0ldQ==}
@@ -1965,7 +1990,7 @@ packages:
   /tunnel/0.0.6:
     resolution: {integrity: sha512-1h/Lnq9yajKY2PEbBadPXj3VxsDDu844OnaAo52UVmIzIvwwtBPIuNvkjuzBlTWpfJyUbG3ez0KSBibQkj4ojg==}
     engines: {node: '>=0.6.11 <=0.7.0 || >=0.7.3'}
-    dev: false
+    dev: true
 
   /type-check/0.4.0:
     resolution: {integrity: sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==}
@@ -2016,10 +2041,16 @@ packages:
       punycode: 2.1.1
     dev: true
 
+  /uuid/3.4.0:
+    resolution: {integrity: sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==}
+    deprecated: Please upgrade  to version 7 or higher.  Older versions may use Math.random() in certain circumstances, which is known to be problematic.  See https://v8.dev/blog/math-random for details.
+    hasBin: true
+    dev: true
+
   /uuid/8.3.2:
     resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
     hasBin: true
-    dev: false
+    dev: true
 
   /vite/3.1.0:
     resolution: {integrity: sha512-YBg3dUicDpDWFCGttmvMbVyS9ydjntwEjwXRj2KBFwSB8SxmGcudo1yb8FW5+M/G86aS8x828ujnzUVdsLjs9g==}
