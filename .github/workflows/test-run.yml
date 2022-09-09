@@ -13,12 +13,23 @@ jobs:
     name: Build API Client
     runs-on: ubuntu-latest
     steps:
+      ## Setup
+      - name: Checkout
+        uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: npm i -g pnpm 
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run all
+
+      ## Steps
       - name: Run Action
-        uses: sportalliance/setup-gh-cli@add-action-logic
+        uses: ./
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Run Action With Version
-        uses: sportalliance/setup-gh-cli@add-action-logic
+        uses: ./
         with: 
           version: 2.15.0
           token: ${{ secrets.GITHUB_TOKEN }}
