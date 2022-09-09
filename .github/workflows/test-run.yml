@@ -1,0 +1,25 @@
+name: Test Run Action
+on:
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }} - ${{ github.event.pull_request.id }}
+  cancel-in-progress: true
+
+permissions: read-all
+
+jobs:
+  run-action:
+    name: Build API Client
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Action
+        uses: sportalliance/setup-gh-cli@add-action-logic
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Run Action With Version
+        uses: sportalliance/setup-gh-cli@add-action-logic
+        with: 
+          version: 2.15.0
+          token: ${{ secrets.GITHUB_TOKEN }}
+

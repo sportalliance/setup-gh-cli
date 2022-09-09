@@ -2,13 +2,13 @@
   "name": "setup-gh-cli",
   "version": "1.0.0",
   "description": "Github action to setup the Github CLI.",
-  "main": "lib/main.ts",
+  "main": "lib/main.js",
   "scripts": {
     "build": "tsc",
     "format": "prettier --write '**/*.ts'",
     "lint": "eslint src/**/*.ts",
     "package": "ncc build --source-map",
-    "test": "vitest",
+    "test": "vitest run",
     "all": "npm run build && npm run format && npm run lint && npm run package && npm test"
   },
   "keywords": [
@@ -19,10 +19,11 @@
   ],
   "author": "Eike Lurz <eike.lurz@tuta.io>",
   "license": "ISC",
-  "dependencies": {
-    "@actions/core": "^1.9.1"
-  },
   "devDependencies": {
+    "@actions/core": "^1.9.1",
+    "@actions/exec": "^1.1.1",
+    "@actions/http-client": "^2.0.1",
+    "@actions/tool-cache": "^2.0.1",
     "@types/node": "^18.7.16",
     "@typescript-eslint/parser": "^5.36.2",
     "@vercel/ncc": "^0.34.0",
