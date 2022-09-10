@@ -6692,7 +6692,6 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core_1 = __nccwpck_require__(5681);
 const tool_cache_1 = __nccwpck_require__(2721);
 const http_client_1 = __nccwpck_require__(9706);
-const exec_1 = __nccwpck_require__(5082);
 const os_1 = __nccwpck_require__(2037);
 const fs_1 = __nccwpck_require__(7147);
 const LATEST_RELEASE_URL = 'https://api.github.com/repos/cli/cli/releases/latest';
@@ -6719,28 +6718,6 @@ const determineLatestVersion = async () => {
     (0, core_1.debug)(`Latest version is ${latestTag}`);
     return latestTag.replace('v', '');
 };
-const authenticate = async () => {
-    const token = (0, core_1.getInput)('token', { required: true });
-    let infoOutput = '';
-    let errorOutput = '';
-    await (0, exec_1.exec)('gh', ['auth', 'login', '--with-token'], {
-        listeners: {
-            stdout: (data) => {
-                infoOutput += data.toString();
-            },
-            stderr: (data) => {
-                errorOutput += data.toString();
-            },
-        },
-        input: Buffer.from(token),
-    });
-    if (errorOutput.length > 0) {
-        (0, core_1.error)(errorOutput);
-    }
-    if (infoOutput.length > 0) {
-        (0, core_1.info)(infoOutput);
-    }
-};
 const run = async () => {
     const version = (0, core_1.getInput)('version') || (await determineLatestVersion());
     const currentArch = determineArch();
@@ -6761,8 +6738,6 @@ const run = async () => {
         (0, core_1.addPath)(cached);
     }
     (0, core_1.info)('Github CLI was added to the PATH');
-    await authenticate();
-    (0, core_1.info)('The CLI is authenticated with the token');
 };
 (0, core_1.debug)('Staring Action...');
 run().catch((err) => (0, core_1.setFailed)(err.message));

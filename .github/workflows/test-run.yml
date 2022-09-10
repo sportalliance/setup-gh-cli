@@ -26,11 +26,7 @@ jobs:
       ## Steps
       - name: Run Action
         uses: ./
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Run Action With Version
         uses: ./
         with: 
           version: 2.15.0
-          token: ${{ secrets.GITHUB_TOKEN }}
-
