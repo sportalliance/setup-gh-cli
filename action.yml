@@ -4,9 +4,6 @@ inputs:
   version:
     description: 'Version of the Github CLI, eg. "v.2.1.5"'
     required: false
-  token:
-    description: 'The Github session token used for authentication'
-    required: true
 runs:
   using: 'node16'
   main: 'dist/index.js'

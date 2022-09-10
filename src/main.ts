@@ -1,7 +1,6 @@
-import { setFailed, getInput, addPath, info, debug, error } from '@actions/core'
+import { setFailed, getInput, addPath, info, debug } from '@actions/core'
 import { find, downloadTool, extractTar, cacheFile } from '@actions/tool-cache'
 import { HttpClient } from '@actions/http-client'
-import { exec } from '@actions/exec'
 import { platform, arch } from 'os'
 import { chmodSync } from 'fs'
 
@@ -37,31 +36,6 @@ const determineLatestVersion = async (): Promise<string> => {
   return latestTag.replace('v', '')
 }
 
-const authenticate = async (): Promise<void> => {
-  const token = getInput('token', { required: true })
-  let infoOutput = ''
-  let errorOutput = ''
-
-  await exec('gh', ['auth', 'login', '--with-token'], {
-    listeners: {
-      stdout: (data: Buffer) => {
-        infoOutput += data.toString()
-      },
-      stderr: (data: Buffer) => {
-        errorOutput += data.toString()
-      },
-    },
-    input: Buffer.from(token),
-  })
-
-  if (errorOutput.length > 0) {
-    error(errorOutput)
-  }
-  if (infoOutput.length > 0) {
-    info(infoOutput)
-  }
-}
-
 const run = async (): Promise<void> => {
   const version = getInput('version') || (await determineLatestVersion())
   const currentArch = determineArch()
@@ -91,9 +65,6 @@ const run = async (): Promise<void> => {
     addPath(cached)
   }
   info('Github CLI was added to the PATH')
-
-  await authenticate()
-  info('The CLI is authenticated with the token')
 }
 
 debug('Staring Action...')
